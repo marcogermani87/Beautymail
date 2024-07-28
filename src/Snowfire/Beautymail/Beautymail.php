@@ -83,6 +83,19 @@ class Beautymail implements Mailer
     }
 
     /**
+     * Send a new mailable message instance synchronously.
+     *
+     * @param  \Illuminate\Contracts\Mail\Mailable  $mailable
+     * @return \Illuminate\Mail\SentMessage|null
+     */
+    public function sendNow($mailable, array $data = [], $callback = null)
+    {
+        $data = array_merge($this->settings, $data);
+
+        $this->mailer->sendNow($view, $data, $callback);
+    }
+    
+    /**
      * Send a new message using the a view via queue.
      *
      * @param string|array    $view
